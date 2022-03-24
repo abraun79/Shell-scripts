@@ -1,0 +1,49 @@
+#!/bin/bash
+#Script Automatizado para atualização e limpeza.
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+
+#--------------------------------------------------------------------------------------------------------
+
+# Internet conectando?
+if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
+  echo -e "${RED}   [ERROR] - Seu computador não tem conexão com a Internet. Verifique os cabos e o modem.${NC}";sleep 5
+  exit 1
+else
+  echo -e "${GREEN}   [INFO] - Conexão com a Internet funcionando normalmente.${NC}";sleep 5
+fi
+
+#-------------------------------------------------------------------------------------------------------
+
+#Atualização de sistema
+echo -e "${BLUE}   *** ÍNICIO DA ATUALIZAÇÃO DE SISTEMA ***${NC}";sleep 1
+
+   apt update &> /dev/null
+   apt upgrade -y &> /dev/null
+
+echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 4
+#--------------------------------------------------------------------------------------------------------
+
+#Limpeza de repositório, remover arquivos absoletos e desnessários.
+echo -e "${BLUE}   *** INICIANDO LIMPEZA DE SISTEMA ***${NC}";sleep 1
+
+   apt autoremove &> /dev/null
+   apt autoclean &> /dev/null
+   apt clean &> /dev/null
+
+echo -e "${GREEN}   *** LIMPEZA CONCLUIDA ***${NC}";sleep 4
+#-------------------------------------------------------------------------------------------------------
+
+#Limpeza de memória
+echo -e "${BLUE}   *** LIMPEZA DE CACHE DE RAM ***${NC}";sleep 1
+   sync && sysctl -w vm.drop_caches=3 &> /dev/null
+   sync; echo 3 > /proc/sys/vm/drop_caches &> /dev/null
+   sync; echo 2 > /proc/sys/vm/drop_caches &> /dev/null
+   sync; echo 1 > /proc/sys/vm/drop_caches &> /dev/null
+echo -e "${GREEN}   *** LIMPEZA DE CACHE CONCLUÍDA ***${NC}";sleep 4
+
+echo -e "${RED}   *** OBRIGADO E TENHA UM ÓTIMO DIA!!! ***${NC}";sleep 1 
+
+echo -e "${GREEN}   *** FIM DO PROCESSO ***${NC}"
