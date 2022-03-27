@@ -2,7 +2,7 @@
 
 #Author: Alessandro Braun ablenda@gmail.com
 #Discribe: Script para instalação do Neovim + Spacevim.
-#Version: 0.3
+#Version: 0.1
 #License: MIT License
 
 VERMELHO='\e[1;91m'
