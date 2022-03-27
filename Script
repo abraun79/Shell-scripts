@@ -1,6 +1,9 @@
-#!/bin/bash
-#Script Automatizado para atualização em distribuições Linux baseadas em Debian.
-#Autor: Alessandro Braun
+#!/usr/bin/env bash
+
+#Author: Alessandro Braun ablenda@gmail.com
+#Discribe: Script Automatizado para atualização em distribuições Linux baseadas em Debian.
+#Version: 0.3
+#License: MIT License
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
