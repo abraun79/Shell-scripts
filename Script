@@ -2,7 +2,7 @@
 
 #Author: Alessandro Braun ablenda@gmail.com
 #Discribe: Script Automatizado para atualização em distribuições Linux baseadas em Debian.
-#Version: 0.3
+#Version: 0.4
 #License: MIT License
 
 RED='\033[1;31m'
@@ -35,9 +35,9 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 4
 #Limpeza de repositório, remover arquivos absoletos e desnessários.
 echo -e "${BLUE}   *** INICIANDO LIMPEZA DE SISTEMA ***${NC}";sleep 1
 
-   apt-get autoremove &> /dev/null
-   apt-get autoclean &> /dev/null
-   apt-get clean &> /dev/null
+   apt-get autoremove -y &> /dev/null 
+   apt-get autoclean -y &> /dev/null 
+   apt-get clean -y &> /dev/null 
 
 echo -e "${GREEN}   *** LIMPEZA CONCLUIDA ***${NC}";sleep 4
 #-------------------------------------------------------------------------------------------------------
