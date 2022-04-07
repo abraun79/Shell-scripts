@@ -2,7 +2,7 @@
 
 #Author: Alessandro Braun ablenda@gmail.com
 #Discribe: Script para verificar conexão de internet.
-#Version: 0.1
+#Version: 0.2
 #License: GPL
 
 RED='\033[1;31m'
