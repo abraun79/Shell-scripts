@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#Author: Alessandro Braun ablenda@gmail.com
+#Discribe: Script para verificar conexão de internet.
+#Version: 0.1
+#License: GPL
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+NC='\033[0m' #No CoLor
+
+# Verificar o acesso à internet:
+
+if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
+         echo -e "${RED} ________________________________________________${NC}"
+         echo -e "${RED}|[ERRO]Sem acesso à internet; Verifique a conexão|${NC}"
+         echo -e "${RED}|________________________________________________|${NC}"
+         exit 1
+else                    
+         echo -e "${GREEN} ________________________________${NC}"
+         echo -e "${GREEN}|   [Ok] Internet conectada...   |${NC}"
+         echo -e "${GREEN}|________________________________|${NC}"
+fi
