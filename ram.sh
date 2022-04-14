@@ -1,7 +1,7 @@
 #!user/bin/env bash
 
 #Author: Alessandro Braun ablenda@gmail.com
-#Discribe: Script para atualização de data e hora.
+#Discribe: Ferramenta para limpeza de chache de memória ram.
 #Version: 0.2
 #License: GPL
 
