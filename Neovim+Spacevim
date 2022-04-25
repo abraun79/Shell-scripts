@@ -2,8 +2,8 @@
 
 #Author: Alessandro Braun ablenda@gmail.com
 #Discribe: Script para instalação do Neovim + Spacevim.
-#Version: 0.1
-#License: MIT License
+#Version: 0.2
+#License: GPL
 
 VERMELHO='\e[1;91m'
 VERDE='\e[1;92m'
@@ -11,13 +11,22 @@ NC='\e[0m'
 
 #Neovim está instalado?
 if [[ ! -x $(which neovim) ]]; then
-  echo -e "${VERMELHO}[erro]*** Programa Neovim não instalado ***${NC}"
-  echo -e "${VERDE}[Info]*** Instalando o Neovim ***${NC}"
-  apt update &> /dev/null
-  apt install neovim -y &> /dev/null
+    echo -e "${VERMELHO}[erro]*** Programa Neovim não instalado ***${NC}"
+    echo -e "${VERDE}[Info]*** Instalando o Neovim ***${NC}"
+    apt update &> /dev/null
+    apt install neovim -y &> /dev/null
 else
-  echo -e "${VERDE}[Info]*** Progrma Neovim já está instalado ***${NC}"
+    echo -e "${VERDE}[Info]*** Progrma Neovim já está instalado ***${NC}"
 fi
+#Git está instalado?
+if [[ ! -x $(which git) ]]; then
+    echo -e "${VERMELHO}[Erro]*** Programa git não instalado  ***${NC}"
+    echo -e "${VERDE}[Info]***  Instalando o git  ***${NC}"
+    apt update &> /dev/null
+    apt install git -y &> /dev/null
+  else
+    echo -e "${VERDE}[Info]***  Programa git já está instalado  ***${NC}"
+fi    
 #Curl está instalado?
 if [[ ! -x $(which curl) ]]; then
     echo -e "${VERMELHO}[erro]*** Programa curl não instalado ***${NC}"
