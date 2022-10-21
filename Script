@@ -32,6 +32,24 @@ echo -e "${BLUE}   *** ÍNICIO DA ATUALIZAÇÃO DE SISTEMA ***${NC}";sleep 1
 echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #--------------------------------------------------------------------------------------------------------
 
+#Atualização do flatpak
+echo -e "${BLUE}   *** ATUALIZAÇÃO DO FLATPAK ***${NC}";sleep 1
+
+   flatpak update &> /dev/null
+
+echo -e "${GREEN}   *** ATUALIZAÇÃO FLATPAK CONCLUÍDA ***${NC}";sleep 2
+
+#-------------------------------------------------------------------------------------------------------
+
+#Atualização do snap
+echo -e "${BLUE}   *** ATUALIZAÇÃO DO SNAP ***${NC}";sleep 1
+   
+   snap refresh &> /dev/null
+
+ echo -e "${GREEN}   *** ATUALIZAÇÃO SNAP CONCLUÍDA ***${NC}";sleep 2
+
+#-------------------------------------------------------------------------------------------------------
+
 #Limpeza de repositório, remover arquivos absoletos e desnessários.
 echo -e "${BLUE}   *** INICIANDO LIMPEZA DE SISTEMA ***${NC}";sleep 1
 
@@ -41,14 +59,6 @@ echo -e "${BLUE}   *** INICIANDO LIMPEZA DE SISTEMA ***${NC}";sleep 1
 
 echo -e "${GREEN}   *** LIMPEZA CONCLUÍDA ***${NC}";sleep 2
 #-------------------------------------------------------------------------------------------------------
-
-#Limpeza de memória
-echo -e "${BLUE}   *** LIMPEZA DE CACHE DE RAM ***${NC}";sleep 1
-   sync && sysctl -w vm.drop_caches=3 &> /dev/null
-   sync; echo 3 > /proc/sys/vm/drop_caches &> /dev/null
-   sync; echo 2 > /proc/sys/vm/drop_caches &> /dev/null
-   sync; echo 1 > /proc/sys/vm/drop_caches &> /dev/null
-echo -e "${GREEN}   *** LIMPEZA DE CACHE CONCLUÍDA ***${NC}";sleep 2
 
 echo -e "${BLUE}   *** Deseja reiniciar o sistema, para atualizações sujam efeito digite \"sim\" ou \"não\" para encerar ***${NC}"
 read CONFIRMA
