@@ -2,7 +2,7 @@
 
 #Author: Alessandro Braun ablenda@gmail.com
 #Discribe: Script Automatizado para atualização em distribuições Linux baseadas em Debian.
-#Version: 1.0
+#Version: 1.5
 #License: GPL
 
 RED='\033[1;31m'
