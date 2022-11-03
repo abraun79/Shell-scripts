@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+# Diretório de backup
+backup_path="/home/alessandro/Documentos"
+
+# Destino do backup
+storage="/mnt/backup"
+
+# Formato do arquivo
+date_fotmat=$(date "+%d-%m-%Y")
+final_archive="backup-$date_fotmat.tar.gz"
+
+# Onde o log será armazenado?
+log_file="/var/log/daily-backup.log"
+
+#######################
+#       TESTE         #
+#######################
+#Checando o storage está conectado a máquina
+if ! mountpoint -q -- $storage; then
+    printf "DEVICE NOT MOUNTED in: $storage CHECK IT.\n"
+    exit 1
+fi
+
+#######################
+#   Inicio de backup  #
+#######################
+tar -czSpf "$storage/$fina_archive" "backup_path"
