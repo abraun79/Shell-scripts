@@ -25,4 +25,4 @@ fi
 #######################
 #   Inicio de backup  #
 #######################
-tar -czSpf "$storage/$fina_archive" "backup_path"
+tar -czSpf "$storage/$fina_archive" "$backup_path"
