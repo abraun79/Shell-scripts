@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 # Diretório de backup
-backup_path="/home/alessandro/Documentos"
+backup_path="/home/alessandro"
 
 # Destino do backup
-storage="/mnt/backup"
+storage="/home/alessandro/Arquivos"
 
 # Formato do arquivo
 date_fotmat=$(date "+%d-%m-%Y")
