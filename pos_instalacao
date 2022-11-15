@@ -1,0 +1,81 @@
+#!/usr/bin/env sh
+
+#Author: Alessandro Braun ablenda@gmail.com
+#Discribe: Shell script pós instalação Arch Linux.
+#Version: 0.1
+#License: GPL
+
+
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+atualizar="pacman -Syu"
+instalar="pacman -S"
+aur="yay -S"
+
+# Internet conectando?
+
+if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
+  echo -e "${RED}   [ERROR] - Seu computador não tem conexão com a Internet. Verifique os cabos e o modem.${NC}";sleep 1
+  exit 1
+else
+  echo -e "${GREEN}   [CHECK] - Conexão com a Internet funcionando normalmente.${NC}";sleep 2
+fi
+
+#Atualizar o sistema pacman.
+
+echo -e "${BLUE}   *** ATUALIZAR VIA PACMAN ***${NC}";sleep 1
+
+     $atualizar &> /dev/null
+
+echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
+
+#Instalar o sudo GIT wget base-devel.
+
+     $instalar sudo git wget base-devel 
+
+#Cadastrar usário e senha e adicinar no grupo whell.
+
+     adduser -m alessandro
+     passwd alessandro
+     usermod -aG wheel,storage,power,users alessandro
+     echo alessandro ALL=(ALL)ALL >> /etc/sudoers
+
+#Instalar o ufw
+
+     $instalar ufw
+     systemctl enable --now ufw
+     ufw enable 
+
+#Instalar o AUR, Snap e Flatpak.
+
+     mkdir ~/Downloads
+     mkdir ~/Downloads/git
+     cd ~/Downloads/git
+     git clone https://aur.archlinux.org/yay.git
+     cd yay
+     makepkg -si -y
+     yay -Sy      
+     $aur snapd
+     $instalar flatpak -y 
+
+#Instalação do xorg, xfce, tilix, sddm, mesa e intel .
+
+     $instalar xfce4 xfce4-goodies
+     systemctl set-default graphical.target
+     $instalar sddm 
+     systemctl enable sddm 
+     $instalar xorg xorg-server xorg-xinit xorg-utils tilix nemo-fileroller
+     $instalar xf86-video-intel mesa mesa-demos   
+
+#Instalação dos demais aplicações.
+
+     $aur brave-bin  pamac-aur whatsapp-for-linux libreoffice-still-pt-br
+     $instalar plank thunderbird -y 
+
+ #Deixar a interface grafice em português.
+
+     locale-gen 
+     localectl set-locale pt_BR.UTF-8
