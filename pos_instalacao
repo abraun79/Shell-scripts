@@ -5,8 +5,7 @@
 #Version: 0.1
 #License: GPL
 
-
-
+#Variáveis
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 BLUE='\033[1;34m'
@@ -34,23 +33,27 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 
 #Instalar o sudo GIT wget base-devel.
 
+echo -e "${BLUE}   *** Instalar git, wget e base-devel ***${NC}";sleep 1
+
      $instalar sudo git wget base-devel 
 
-#Cadastrar usário e senha e adicinar no grupo whell.
+#Cadastrar usuário e senha e adicinar em grupos.
 
+echo -e "${BLUE}   *** Criar usuário ***${NC}";sleep 3
      adduser -m alessandro
-     passwd alessandro
+     passwd alessandro 
+echo -e "${BLUE}   *** Adicionar permissões e grupos ***${NC}";sleep 3     
      usermod -aG wheel,storage,power,users alessandro
      echo alessandro ALL=(ALL)ALL >> /etc/sudoers
 
 #Instalar o ufw
-
-     $instalar ufw
+echo -e "${BLUE}   *** Instalar UFW ***${NC}";sleep 3
+     $instalar ufw -y 
      systemctl enable --now ufw
      ufw enable 
 
 #Instalar o AUR, Snap e Flatpak.
-
+echo -e "${BLUE}   *** Instalar AUR, Snap e Flatpak ***${NC}";sleep 3
      mkdir ~/Downloads
      mkdir ~/Downloads/git
      cd ~/Downloads/git
@@ -62,7 +65,7 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
      $instalar flatpak -y 
 
 #Instalação do xorg, xfce, tilix, sddm, mesa e intel .
-
+echo -e "${BLUE}   *** Instalar xorg, xfce, tilix, sddm, mesa e driver Intel ***${NC}";sleep 3
      $instalar xfce4 xfce4-goodies
      systemctl set-default graphical.target
      $instalar sddm 
@@ -71,11 +74,30 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
      $instalar xf86-video-intel mesa mesa-demos   
 
 #Instalação dos demais aplicações.
-
+echo -e "${BLUE}   *** Instalar demais aplicações ***${NC}";sleep 3
      $aur brave-bin  pamac-aur whatsapp-for-linux libreoffice-still-pt-br
      $instalar plank thunderbird -y 
 
  #Deixar a interface grafice em português.
-
+echo -e "${BLUE}   *** Deixar a interface grafice em português ***${NC}";sleep 1
      locale-gen 
      localectl set-locale pt_BR.UTF-8
+
+#Fim do shell script.
+
+echo -e "${BLUE}   *** Deseja reiniciar o sistema, para atualizações sujam efeito digite \"Sim(s)\" ou \"Não(n)\" para encerar (RECOMENDA-SE REINICIAR)***${NC}"
+read CONFIRMA
+
+case $CONFIRMA in 
+    "s")
+        reboot 
+    ;;
+
+    "n")
+        reset            
+    ;;
+
+    *)
+        echo -e "${RED}   *** OPÇÃO INVÁLIDA ***${NC}"
+    ;;
+esac      
