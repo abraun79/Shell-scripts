@@ -1,0 +1,77 @@
+#!/usr/bin/env sh
+
+#Author: Alessandro Braun ablenda@gmail.com
+#Discribe: Script Automatizado para atualização em distribuições baseadas em Arch Linux.
+#Version: 0.1
+#License: GPL
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+
+#--------------------------------------------------------------------------------------------------------
+
+# Internet conectando?
+if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
+  echo -e "${RED}   [ERROR] - Seu computador não tem conexão com a Internet. Verifique os cabos e o modem.${NC}";sleep 2
+  exit 1
+else
+  echo -e "${GREEN}   [CHECK] - Conexão com a Internet funcionando normalmente.${NC}";sleep 2
+fi
+
+#-------------------------------------------------------------------------------------------------------
+
+#Atualização de sistema pacman 
+echo -e "${BLUE}   *** ATUALIZAÇÃO DE SISTEMA VIA PACMAN ***${NC}";sleep 1
+
+   pacman -Sy 
+   pacman -Syu
+   pacman -Syyu 
+
+echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
+#--------------------------------------------------------------------------------------------------------
+
+#Atualização de sistema AUR
+echo -e "${BLUE}   ***  ATUALIZAÇÃO DE SISTEMA VIA AUR ***${NC}";sleep 1
+                                               
+    yay -Sy                                                    
+    yay -Syu                                                                                                     
+    yay -Syyu                                                                                                    
+                                                   
+echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
+#--------------------------------------------------------------------------------------------------------
+
+#Atualização dos flatpak
+echo -e "${BLUE}   *** ATUALIZAÇÃO DOS FLATPAK ***${NC}";sleep 1
+
+   flatpak update 
+
+echo -e "${GREEN}   *** ATUALIZAÇÃO FLATPAK CONCLUÍDA ***${NC}";sleep 2
+
+#-------------------------------------------------------------------------------------------------------
+
+#Atualização dos snap
+echo -e "${BLUE}   *** ATUALIZAÇÃO DOS SNAP ***${NC}";sleep 1
+   
+   snap refresh
+
+ echo -e "${GREEN}   *** ATUALIZAÇÃO SNAP CONCLUÍDA ***${NC}";sleep 2
+
+#-------------------------------------------------------------------------------------------------------
+
+echo -e "${BLUE}   *** Deseja reiniciar o sistema, para atualizações sujam efeito digite \"Sim(s)\" ou \"Não(n)\" para encerar ***${NC}"
+read CONFIRMA
+case $CONFIRMA in 
+    "s")
+        reboot 
+    ;;
+
+    "n")
+        reset            
+    ;;
+
+    *)
+        echo -e "${RED}   *** OPÇÃO INVÁLIDA ***${NC}"
+    ;;
+esac 
