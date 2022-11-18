@@ -25,19 +25,15 @@ fi
 #Atualização de sistema pacman 
 echo -e "${BLUE}   *** ATUALIZAÇÃO DE SISTEMA VIA PACMAN ***${NC}";sleep 1
 
-   pacman -Sy 
-   pacman -Syu
-   pacman -Syyu 
+   pacman -Syu -y
 
 echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #--------------------------------------------------------------------------------------------------------
 
 #Atualização de sistema AUR
 echo -e "${BLUE}   ***  ATUALIZAÇÃO DE SISTEMA VIA AUR ***${NC}";sleep 1
-                                               
-    yay -Sy                                                    
-    yay -Syu                                                                                                     
-    yay -Syyu                                                                                                    
+                    
+    yay -Syu   -y                                                                                                                                                                                                    
                                                    
 echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #--------------------------------------------------------------------------------------------------------
@@ -45,7 +41,7 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #Atualização dos flatpak
 echo -e "${BLUE}   *** ATUALIZAÇÃO DOS FLATPAK ***${NC}";sleep 1
 
-   flatpak update 
+   flatpak update -y
 
 echo -e "${GREEN}   *** ATUALIZAÇÃO FLATPAK CONCLUÍDA ***${NC}";sleep 2
 
@@ -54,7 +50,7 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO FLATPAK CONCLUÍDA ***${NC}";sleep 2
 #Atualização dos snap
 echo -e "${BLUE}   *** ATUALIZAÇÃO DOS SNAP ***${NC}";sleep 1
    
-   snap refresh
+   snap refresh -y
 
  echo -e "${GREEN}   *** ATUALIZAÇÃO SNAP CONCLUÍDA ***${NC}";sleep 2
 
