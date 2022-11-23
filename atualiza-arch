@@ -2,7 +2,7 @@
 
 #Author: Alessandro Braun ablenda@gmail.com
 #Discribe: Script Automatizado para atualização em distribuições baseadas em Arch Linux.
-#Version: 0.1
+#Version: 0.2
 #License: GPL
 
 RED='\033[1;31m'
@@ -50,7 +50,7 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO FLATPAK CONCLUÍDA ***${NC}";sleep 2
 #Atualização dos snap
 echo -e "${BLUE}   *** ATUALIZAÇÃO DOS SNAP ***${NC}";sleep 1
    
-   snap refresh -y
+   snap refresh
 
  echo -e "${GREEN}   *** ATUALIZAÇÃO SNAP CONCLUÍDA ***${NC}";sleep 2
 
