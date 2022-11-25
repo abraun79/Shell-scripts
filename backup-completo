@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 # Diretório de backup
-backup_path="/home/alessandro/Documentos"
+backup_path="/home/alessandro/Downloads"
 
 # Destino do backup
-storage="/home/alessandro"
+storage="/home/alessandro/Arquivos"
 
 # Formato do arquivo
 date_fotmat=$(date "+%d-%m-%Y")
@@ -12,10 +12,9 @@ final_archive="backup-$date_fotmat.tar.gz"
 
 # Onde o log será armazenado?
 log_file="/var/log/daily-backup.log"
-
-echo -e     #######################
-echo -e     #       TESTE         #
-echo -e     #######################
+     #######################
+     #       TESTE         #
+     #######################
 #Checando o storage está conectado a máquina
 
 if ! mountpoint -q -- $storage; then
@@ -23,8 +22,8 @@ if ! mountpoint -q -- $storage; then
     exit 1
 fi
 
-echo -e     #######################
-echo -e     #   Inicio de backup  #
-echo -e     #######################
+     #######################
+     #   Inicio de backup  #
+     #######################
 
 tar -czSpf "$storage/$fina_archive" "$backup_path"
