@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+#Author: Alessandro Braun ablenda@gmail.com
+#Discribe: Script Automatizado para limpeza de cache do pacman em distribuições baseadas em Arch Linux.
+#Version: 0.2
+#License: GPL
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}    *** LIMPEZA DE CACHE ***${NC}";sleep 1
+
+  paccache -r 
+  pacman -Sc 
+
+echo -e "${GREEN}    *** LIMPEZA DE CACHE TERMINADA ***${NC}";sleep 2
