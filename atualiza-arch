@@ -52,7 +52,7 @@ echo -e "${BLUE}   *** ATUALIZAÇÃO DOS SNAP ***${NC}";sleep 1
    
    snap refresh
 
- echo -e "${GREEN}   *** ATUALIZAÇÃO SNAP CONCLUÍDA ***${NC}";sleep 2
+echo -e "${GREEN}   *** ATUALIZAÇÃO SNAP CONCLUÍDA ***${NC}";sleep 2
 
 #-------------------------------------------------------------------------------------------------------
 
