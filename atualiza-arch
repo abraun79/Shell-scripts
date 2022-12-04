@@ -25,7 +25,7 @@ fi
 #Atualização de sistema pacman 
 echo -e "${BLUE}   *** ATUALIZAÇÃO DE SISTEMA VIA PACMAN ***${NC}";sleep 1
 
-   pacman -Syu -y
+   pacman -Syu
 
 echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #--------------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #Atualização de sistema AUR
 echo -e "${BLUE}   ***  ATUALIZAÇÃO DE SISTEMA VIA AUR ***${NC}";sleep 1
                     
-    yay -Syu   -y                                                                                                                                                                                                    
+    yay -Syu                                                                                                                                                                                                    
                                                    
 echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #--------------------------------------------------------------------------------------------------------
@@ -55,6 +55,17 @@ echo -e "${BLUE}   *** ATUALIZAÇÃO DOS SNAP ***${NC}";sleep 1
  echo -e "${GREEN}   *** ATUALIZAÇÃO SNAP CONCLUÍDA ***${NC}";sleep 2
 
 #-------------------------------------------------------------------------------------------------------
+
+#Limpeza de cache
+
+echo -e "${BLUE}    *** LIMPEZA DE CACHE ***${NC}";sleep 1
+
+  paccache -r 
+  pacman -Sc 
+
+echo -e "${GREEN}    *** LIMPEZA DE CACHE TERMINADA ***${NC}";sleep 2
+
+#--------------------------------------------------------------------------------------------------------
 
 echo -e "${BLUE}   *** Deseja reiniciar o sistema, para atualizações sujam efeito digite \"Sim(s)\" ou \"Não(n)\" para encerar ***${NC}"
 read CONFIRMA
