@@ -42,7 +42,7 @@ fi
 
 #Instalar aplicativos
 	echo -e "${BLUE} ***INSTALAÇÃO DE APLICATIVOS***${NC}";sleep 2
-	yay -S alacritty spotify ulauncher plank transmission --noconfirm 
+	yay -S alacritty spotify ulauncher plank transmission onedrivegui-git --noconfirm 
 	echo -e "${GREEN} ***INSTALAÇÃO CONCLUÍDA***${NC}";sleep 2
 #-------------------------------------------------------------
 
