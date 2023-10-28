@@ -1,0 +1,95 @@
+#! /usr/bin/env sh
+
+#Author: Alessandro Braun
+#E-mail: albraun79@outlook.com
+#Discribe: Shell-script for post-installation of Manjaro Linux
+#Version: 0.1
+#License: GPL
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BLUE='\033[1;34m'
+NC='\033[0m' #No color
+
+#------------------------------------------------------------
+
+#Internet está conectada?
+
+if ! ping -c 4 manjaro.org -q &> /dev/null; then
+	echo -e "${RED} [ERRO] -Seu dispositivo não tem conexão com a internet.${NC}";sleep 2
+	exit 1
+else
+	echo -e "${GREEN} [CHECK] -Conexão com a internet OK!!!${NC}";sleep 2
+fi
+
+#------------------------------------------------------------
+
+#Atualizar MANJARO
+	echo -e "${BLUE} ***ATUALIZAR O MANJARO***${NC}";sleep 2
+	sudo pacman -Syyuu --noconfirm
+	echo -e "${GREEN} ***ATUALIZAÇÃO CONCLUÍDA***${NC}";sleep 2
+#------------------------------------------------------------
+
+#Instalar YAY
+	echo -e "${BLUE} ***INSTALAÇÃO DO YAY***${NC}";sleep 2
+	sudo pacman -S git wget curl go base-devel --noconfirm
+	git clone https://aur.archlinux.org/yay.git
+	cd yay
+        makepkg -si --noconfirm
+        rm -rf yay &> /dev/null
+	echo -e "${GREEN} ***INSTALAÇÃO CONCLUÍDA***${NC}";sleep 2
+#------------------------------------------------------------
+
+#Instalar aplicativos
+	echo -e "${BLUE} ***INSTALAÇÃO DE APLICATIVOS***${NC}";sleep 2
+	yay -S alacritty spotify ulauncher plank transmission --noconfirm 
+	echo -e "${GREEN} ***INSTALAÇÃO CONCLUÍDA***${NC}";sleep 2
+#-------------------------------------------------------------
+
+#Instalar temas, fontes e ícones
+	echo -e "${BLUE} ***INSTALAÇÃO DE TEMAS, FONTES E ÍCONES***${NC}";sleep 2
+	yay -S dracula-gtk-theme dracula-icons-git ttf-meslo-nerd ttf-font-awesome --noconfirm
+	echo -e "${GREEN} ***INSTALAÇÃO CONCLUÍDA***${NC}";sleep 2
+#-------------------------------------------------------------
+
+# Crie a pasta "~/.config/alacritty" se ela não existir
+
+config_dir="$HOME/.config/alacritty"
+	echo -e "${BLUE} ***CONFIGURAR ALACRITTY***${NC}";sleep 2 
+	echo -e "${BLUE} ***CRIAR DIRETÓRIO ALACRITTY***${NC}";sleep 2
+mkdir -p "$config_dir" &> /dev/null
+	echo -e "${GREEN} ***DIRETÓRIO CRIADO***${NC}";sleep 2
+
+# Defina o conteúdo do arquivo "alacritty.yml"
+
+conteudo_alacritty="
+window:
+    opacity: 0.9
+    title: Alacritty
+    dimensions:
+        columns: 140
+        lines: 30
+class:
+    instance: Alacritty
+    general: Alacritty
+font:
+   Normal:
+      family: MesloLGS NF
+"
+
+# Caminho do arquivo "alacritty.yml"
+
+	echo -e "${BLUE} ***CRIAR ARQUIVO ALACRITTY.YML***${NC}";sleep 2
+arquivo_alacritty="$config_dir/alacritty.yml"
+
+# Verifique se o arquivo já existe antes de criar
+if [ -f "$arquivo_alacritty" ]; then
+        echo "${GREEN} O arquivo $arquivo_alacritty já existe.";sleep 2
+else
+    # Crie o arquivo "alacritty.yml" com o conteúdo
+        echo "${GREEN} $conteudo_alacritty" > "$arquivo_alacritty";sleep 2
+        echo "${GREEN} Arquivo $arquivo_alacritty criado com sucesso.";sleep 2
+fi
+
+# Abra o arquivo "alacrittoky.yml" para edição
+#nano "$arquivo_alacritty"
