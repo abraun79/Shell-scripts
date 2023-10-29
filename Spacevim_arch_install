@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+#Author: Alessandro Braun ablenda@gmail.com
+#Discribe: Script para instalação do Spacevim na base Arch Linux
+#Version: 1.0
+#License: GPL
+
+VERMELHO='\e[1;91m'
+VERDE='\e[1;92m'
+NC='\e[0m'
+
+#Neovim está instalado?
+if [[ ! -x $(which neovim) ]]; then
+    echo -e "${VERMELHO}[erro]*** Programa Neovim não instalado ***${NC}"
+    echo -e "${VERDE}[Info]*** Instalando o Neovim ***${NC}"
+    yay -Syu --noconfirm&> /dev/null
+    yay -S neovim --noconfirm &> /dev/null
+else
+    echo -e "${VERDE}[Info]*** Progrma Neovim já está instalado ***${NC}"
+fi
+#Git está instalado?
+if [[ ! -x $(which git) ]]; then
+    echo -e "${VERMELHO}[Erro]*** Programa git não instalado  ***${NC}"
+    echo -e "${VERDE}[Info]***  Instalando o git  ***${NC}"
+    yay -S git --noconfirm &> /dev/null
+  else
+    echo -e "${VERDE}[Info]***  Programa git já está instalado  ***${NC}"
+fi    
+#Curl está instalado?
+if [[ ! -x $(which curl) ]]; then
+    echo -e "${VERMELHO}[erro]*** Programa curl não instalado ***${NC}"
+    echo -e "${VERDE}[Info]*** Instalando o curl ***${NC}"
+    yay -S curl --noconfirm &> /dev/null
+else
+    echo -e "${VERDE}[Info]*** Programa curl já está instalado ***${NC}"
+fi
+#Instalação do Spacevim    
+    echo -e "${VERDE}[Info]*** Instalando o Spacevim ***${NC}"
+    curl -sLf https://spacevim.org/install.sh | zsh -s -- --install Neovim
