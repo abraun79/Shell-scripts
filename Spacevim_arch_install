@@ -37,3 +37,4 @@ fi
 #Instalação do Spacevim    
     echo -e "${VERDE}[Info]*** Instalando o Spacevim ***${NC}"
     curl -sLf https://spacevim.org/install.sh | bash -s -- --install Neovim
+#End script
