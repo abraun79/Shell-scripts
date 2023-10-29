@@ -22,18 +22,10 @@ fi
 
 #-------------------------------------------------------------------------------------------------------
 
-#Atualização de sistema pacman 
-echo -e "${BLUE}   *** ATUALIZAÇÃO DE SISTEMA VIA PACMAN ***${NC}";sleep 1
-
-   pacman -Syu
-
-echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
-#--------------------------------------------------------------------------------------------------------
-
 #Atualização de sistema AUR
 echo -e "${BLUE}   ***  ATUALIZAÇÃO DE SISTEMA VIA AUR ***${NC}";sleep 1
                     
-    yay -Syu                                                                                                                                                                                                    
+    yay -Syu --noconfirm                                                                                                                                                                                                   
                                                    
 echo -e "${GREEN}   *** ATUALIZAÇÃO CONCLUÍDA ***${NC}";sleep 2
 #--------------------------------------------------------------------------------------------------------
