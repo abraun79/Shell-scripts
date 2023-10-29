@@ -2,7 +2,7 @@
 
 #Author: Alessandro Braun ablenda@gmail.com
 #Discribe: Script Automatizado para atualização em distribuições baseadas em Arch Linux.
-#Version: 0.2
+#Version: 1.1
 #License: GPL
 
 RED='\033[1;31m'
