@@ -4,7 +4,7 @@
 backup_path="/home/alessandro"
 
 # Destino do backup
-storage="/home/alessandro/Backup"
+storage="/run/media/alessandro"
 
 # Formato do arquivo
 date_fotmat=$(date "+%d-%m-%Y")
