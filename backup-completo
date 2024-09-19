@@ -4,26 +4,34 @@
 backup_path="/home/alessandro"
 
 # Destino do backup
-storage="/run/media/alessandro/Backup"
+storage="/home/alessandro/Dados/backup"
 
 # Formato do arquivo
-date_fotmat=$(date "+%d-%m-%Y")
-final_archive="backup-$date_fotmat.tar.gz"
+date_format=$(date "+%d-%m-%Y_%H-%M")
+final_archive="backup-$date_format.tar.gz"
 
 # Onde o log será armazenado?
 log_file="/var/log/daily-backup.log"
-     #######################
-     #       TESTE         #
-     #######################
-#Checando o storage está conectado a máquina
 
-if ! mountpoint -q -- $storage; then
-    printf "DEVICE NOT MOUNTED in: $storage CHECK IT.\n"
+#######################
+#       TESTE         #
+#######################
+
+# Checando se o diretório de destino existe
+if [ ! -d "$storage" ]; then
+    printf "Directory %s does not exist. CHECK IT.\n" "$storage" | tee -a "$log_file"
     exit 1
 fi
 
-     #######################
-     #   Inicio de backup  #
-     #######################
+#######################
+#   Início de backup  #
+#######################
 
-tar -czSpf "$storage/$fina_archive" "$backup_path"
+# Executando o backup, incluindo apenas os diretórios especificados
+if tar -czSpf "$storage/$final_archive" \
+    -C "$backup_path" Documentos Downloads Imagens Vídeos Músicas Projeto Shell-scripts; then
+    printf "Backup successful: %s/%s\n" "$storage" "$final_archive" | tee -a "$log_file"
+else
+    printf "Backup failed.\n" | tee -a "$log_file"
+    exit 1
+fi
