@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 
 # Diretório de backup
-backup_path="/home/alessandro"
+backup_path="/home/user"
 
 # Configurações do servidor Samba
 samba_server="fileserver.local"
 samba_share="//fileserver.local/data/backup"
 samba_mount="/mnt/backup"
-username="alessandro"  # Substitua pelo seu nome de usuário do Samba
-password="ale#0405"   # Substitua pela sua senha do Samba
+username="user"  # Substitua pelo seu nome de usuário do Samba
+password="password"   # Substitua pela sua senha do Samba
 
 # Formato do arquivo de backup
 date_format=$(date "+%d-%m-%Y_%H-%M")
